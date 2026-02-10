@@ -5,9 +5,7 @@ logs
 *.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
 # =====================
 # Dependencies
@@ -33,14 +31,9 @@ dist-ssr/
 .vscode/*
 !.vscode/extensions.json
 .idea/
-.DS_Store
-Thumbs.db
 
 # =====================
-# OS / Tooling
+# OS
 # =====================
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.DS_Store
+Thumbs.db
