@@ -64,7 +64,13 @@ onUnmounted(() => {
 
 function formatTime(time) {
   if (!time) return '--:--'
-  return new Date(time).toLocaleTimeString()
+
+  const d = new Date(time)
+  const h = String(d.getHours()).padStart(2, '0')
+  const m = String(d.getMinutes()).padStart(2, '0')
+  const s = String(d.getSeconds()).padStart(2, '0')
+
+  return `${h}:${m}:${s}`
 }
 
 const playSeconds = computed(() => {
