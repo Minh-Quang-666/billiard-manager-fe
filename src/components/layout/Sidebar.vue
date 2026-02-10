@@ -4,7 +4,8 @@
 
     <router-link to="/" @click="emit('navigate')">Dashboard</router-link>
     <router-link to="/tables" @click="emit('navigate')">Quản lý bàn</router-link>
-    <router-link to="/foods" @click="emit('navigate')">Đồ ăn</router-link>
+    <router-link to="/foods" @click="emit('navigate')">Quản lý Đồ ăn</router-link>
+    <router-link to="/cues" @click="emit('navigate')">Quản lý Gậy thuê</router-link>
     <router-link to="/revenue" @click="emit('navigate')">Doanh thu</router-link>
   </aside>
 </template>
