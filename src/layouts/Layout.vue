@@ -17,8 +17,11 @@
 import { ref } from 'vue'
 import Sidebar from '@/components/layout/Sidebar.vue'
 import Header from '@/components/layout/Header.vue'
+import { useRouter } from 'vue-router'
+
 
 const open = ref(false)
+
 </script>
 
 <style scoped>

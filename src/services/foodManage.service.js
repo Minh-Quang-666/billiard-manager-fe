@@ -1,14 +1,13 @@
-import axios from 'axios'
-const API = 'http://localhost:8000'
+import http from './http'
 
 export const getFoods = async () =>
-  (await axios.get(`${API}/foods`)).data
+  (await http.get('/foods')).data
 
 export const addFood = (data) =>
-  axios.post(`${API}/foods`, data)
+  http.post('/foods', data)
 
 export const updateFood = (id, data) =>
-  axios.put(`${API}/foods/${id}`, data)
+  http.put(`/foods/${id}`, data)
 
 export const deleteFood = (id) =>
-  axios.delete(`${API}/foods/${id}`)
+  http.delete(`/foods/${id}`)

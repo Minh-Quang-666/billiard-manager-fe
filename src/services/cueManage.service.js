@@ -1,14 +1,13 @@
-import axios from 'axios'
-const API = 'http://localhost:8000'
+import http from './http'
 
 export const getCues = async () =>
-  (await axios.get(`${API}/cues`)).data
+  (await http.get('/cues')).data
 
 export const addCue = (data) =>
-  axios.post(`${API}/cues`, data)
+  http.post('/cues', data)
 
 export const updateCue = (id, data) =>
-  axios.put(`${API}/cues/${id}`, data)
+  http.put(`/cues/${id}`, data)
 
 export const deleteCue = (id) =>
-  axios.delete(`${API}/cues/${id}`)
+  http.delete(`/cues/${id}`)

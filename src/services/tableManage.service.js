@@ -1,14 +1,13 @@
-import axios from 'axios'
-const API = 'http://localhost:8000'
+import http from './http'
 
 export const getTables = async () =>
-  (await axios.get(`${API}/tables`)).data
+  (await http.get('/tables')).data
 
 export const addTable = (data) =>
-  axios.post(`${API}/tables`, data)
+  http.post('/tables', data)
 
 export const updateTable = (id, data) =>
-  axios.put(`${API}/tables/${id}`, data)
+  http.put(`/tables/${id}`, data)
 
 export const deleteTable = (id) =>
-  axios.delete(`${API}/tables/${id}`)
+  http.delete(`/tables/${id}`)
