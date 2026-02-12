@@ -22,6 +22,7 @@ import { ref, onMounted } from 'vue'
 import TableCard from '@/components/billiard/TableCard.vue'
 import TableDetailModal from '@/components/billiard/TableDetailModal.vue'
 import { getActiveTables } from '@/services/table.service'
+import { handleApiError } from '@/utils/errorHandler'
 
 const tables = ref([])
 const selectedTable = ref(null)
@@ -32,6 +33,7 @@ onMounted(async () => {
     tables.value = await getActiveTables()
   } catch (e) {
     console.error('API ERROR', e)
+    alert(handleApiError(e))
   }
 })
 
