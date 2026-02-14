@@ -286,9 +286,8 @@ async function startTable() {
 
     const pad = n => String(n).padStart(2,'0')
 
-    start_time =
-      `${customTime.getFullYear()}-${pad(customTime.getMonth()+1)}-${pad(customTime.getDate())}
-       ${pad(h)}:${pad(m)}:${pad(s)}`
+    start_time = `${customTime.getFullYear()}-${pad(customTime.getMonth()+1)}-${pad(customTime.getDate())} ${pad(h)}:${pad(m)}:${pad(s)}`
+
   }
 
   await startTableApi(props.table.table_id, {
