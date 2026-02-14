@@ -286,7 +286,7 @@ async function startTable() {
 
     const pad = n => String(n).padStart(2,'0')
 
-    start_time = `${customTime.getFullYear()}-${pad(customTime.getMonth()+1)}-${pad(customTime.getDate())} ${pad(h)}:${pad(m)}:${pad(s)}`
+    start_time =`${customTime.getFullYear()}-${pad(customTime.getMonth()+1)}-${pad(customTime.getDate())} ${pad(h)}:${pad(m)}:${pad(s)}`
 
   }
 
@@ -299,9 +299,7 @@ async function startTable() {
 
 async function checkout() {
   const d = freezeTime.value
-  const endTime =
-    `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}
-     ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`
+  const endTime = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`
 
   const res = await checkoutTable(props.table.table_id, endTime)
   alert(`✅ Tính tiền thành công!\nTổng tiền: ${res.total_amount.toLocaleString()}đ`)
