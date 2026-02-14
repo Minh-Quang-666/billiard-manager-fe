@@ -19,6 +19,12 @@
           placeholder="Nhập tên người chơi"
         />
 
+        <input
+          v-model="startTimeInput"
+          class="input"
+          placeholder="Giờ bắt đầu (HH:mm:ss) - bỏ trống nếu bắt đầu ngay"
+        />
+
         <button class="action-btn" @click="startTable">
           ▶️ Bắt đầu
         </button>
@@ -123,6 +129,7 @@ import {
   updateCue
 } from '@/services/table.service'
 
+const startTimeInput = ref('')
 const props = defineProps({ table: Object })
 
 const playerName = ref('')
@@ -245,7 +252,49 @@ const totalMoney = computed(() => {
 
 /* ===== ACTION ===== */
 async function startTable() {
-  await startTableApi(props.table.table_id, { player_name: playerName.value })
+  if (!playerName.value) {
+    alert("Vui lòng nhập tên người chơi")
+    return
+  }
+
+  let start_time = null
+
+  if (startTimeInput.value) {
+    const now = new Date()
+
+    const [h, m, s] = startTimeInput.value.split(':').map(Number)
+
+    if (
+      isNaN(h) || isNaN(m) || isNaN(s) ||
+      h > 23 || m > 59 || s > 59
+    ) {
+      alert("Giờ không hợp lệ. Định dạng HH:mm:ss")
+      return
+    }
+
+    const customTime = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      h, m, s
+    )
+
+    if (customTime > now) {
+      alert("Không thể chọn giờ tương lai")
+      return
+    }
+
+    const pad = n => String(n).padStart(2,'0')
+
+    start_time =
+      `${customTime.getFullYear()}-${pad(customTime.getMonth()+1)}-${pad(customTime.getDate())}
+       ${pad(h)}:${pad(m)}:${pad(s)}`
+  }
+
+  await startTableApi(props.table.table_id, {
+    player_name: playerName.value,
+    start_time
+  })
   location.reload()
 }
 
