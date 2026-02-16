@@ -19,10 +19,14 @@
           placeholder="Nhập tên người chơi"
         />
 
-        <input
-          v-model="startTimeInput"
-          class="input"
-          placeholder="Giờ bắt đầu (HH:mm:ss) - bỏ trống nếu bắt đầu ngay"
+        <select v-model="dayOption" class="input">
+          <option value="today">Hôm nay</option>
+          <option value="yesterday">Hôm qua</option>
+        </select>
+
+        <input 
+          v-model="startTimeInput" 
+          class="input" placeholder="Giờ bắt đầu (HH:mm:ss) - bỏ trống nếu bắt đầu ngay" 
         />
 
         <button class="action-btn" @click="startTable">
@@ -130,6 +134,7 @@ import {
 } from '@/services/table.service'
 
 const startTimeInput = ref('')
+const dayOption = ref('today')
 const props = defineProps({ table: Object })
 
 const playerName = ref('')
@@ -278,6 +283,11 @@ async function startTable() {
       now.getDate(),
       h, m, s
     )
+
+    // 👇 nếu chọn hôm qua
+    if (dayOption.value === 'yesterday') {
+      customTime.setDate(customTime.getDate() - 1)
+    }
 
     if (customTime > now) {
       alert("Không thể chọn giờ tương lai")
